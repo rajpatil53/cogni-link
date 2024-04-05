@@ -1,7 +1,7 @@
 import { graphql } from "relay-runtime";
 
 export const VoteCreateMutation = graphql`
-  mutation VoteCreateMutation($input: CreateVoteInput!, $viewerId: ID!) {
+  mutation VoteCreateMutation($input: CreateVoteInput!, $userId: ID!) {
     createVote(input: $input) {
       document {
         id
@@ -15,7 +15,7 @@ export const VoteCreateMutation = graphql`
 `;
 
 export const VoteUpdateMutation = graphql`
-  mutation VoteUpdateMutation($input: UpdateVoteInput!, $viewerId: ID!) {
+  mutation VoteUpdateMutation($input: UpdateVoteInput!, $userId: ID!) {
     updateVote(input: $input) {
       document {
         id

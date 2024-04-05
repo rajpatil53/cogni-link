@@ -24,7 +24,7 @@ const CommentSection = ({ commentsData }: Props) => {
   };
 
   return (
-    <section className="py-8 antialiased">
+    <section className="antialiased">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg lg:text-2xl font-bold">
           Comments ({commentsDetails.commentsCount})

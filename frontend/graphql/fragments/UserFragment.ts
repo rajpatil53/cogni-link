@@ -11,7 +11,6 @@ export const UserProfileFragment = graphql`
 
 export const UserFragment = graphql`
   fragment UserFragment on CeramicAccount {
-    isViewer
     id
     profile {
       ...UserFragment_profile

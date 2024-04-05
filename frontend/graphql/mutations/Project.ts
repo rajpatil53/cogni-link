@@ -1,7 +1,7 @@
 import { graphql } from "relay-runtime";
 
 export const ProjectCreateMutation = graphql`
-  mutation ProjectCreateMutation($input: CreateProjectInput!, $viewerId: ID!) {
+  mutation ProjectCreateMutation($input: CreateProjectInput!, $userId: ID!) {
     createProject(input: $input) {
       document {
         id
@@ -12,7 +12,7 @@ export const ProjectCreateMutation = graphql`
 `;
 
 export const ProjectUpdateMutation = graphql`
-  mutation ProjectUpdateMutation($input: UpdateProjectInput!, $viewerId: ID!) {
+  mutation ProjectUpdateMutation($input: UpdateProjectInput!, $userId: ID!) {
     updateProject(input: $input) {
       document {
         id

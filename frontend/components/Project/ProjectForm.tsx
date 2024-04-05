@@ -31,7 +31,7 @@ const ProjectForm = (props: Props) => {
             updated: new Date().toISOString(),
           },
         },
-        viewerId: did,
+        userId: did,
       },
       onCompleted(response, errors) {
         if (response.createProject?.document.id) {

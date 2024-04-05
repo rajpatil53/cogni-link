@@ -53,25 +53,25 @@ const VoteButton = ({ type, votesFragment }: Props) => {
     useMutation<VoteCreateMutationType>(VoteCreateMutation);
   const [commitUpdateMutation, isUpdateMutationInFlight] =
     useMutation<VoteUpdateMutationType>(VoteUpdateMutation);
-  const viewerVote = votesData?.viewerVote?.edges
-    ? votesData?.viewerVote?.edges![0]?.node
+  const userVote = votesData?.userVote?.edges
+    ? votesData?.userVote?.edges![0]?.node
     : null;
   const icon = getIcon(type);
   const label = getLabel(type, votesData);
 
   function onVoteButtonClicked() {
     try {
-      if (viewerVote) {
+      if (userVote) {
         commitUpdateMutation({
           variables: {
             input: {
-              id: viewerVote.id,
+              id: userVote.id,
               content: {
-                type: viewerVote.type == type ? "NONE" : type,
+                type: userVote.type == type ? "NONE" : type,
                 updated: new Date().toISOString(),
               },
             },
-            viewerId: did,
+            userId: did,
           },
         });
       } else {
@@ -85,7 +85,7 @@ const VoteButton = ({ type, votesFragment }: Props) => {
                 updated: new Date().toISOString(),
               },
             },
-            viewerId: did,
+            userId: did,
           },
         });
       }
@@ -97,7 +97,7 @@ const VoteButton = ({ type, votesFragment }: Props) => {
     <button
       className={clsx({
         "btn btn-sqare btn-sm": true,
-        "btn-secondary": viewerVote?.type == type,
+        "btn-secondary": userVote?.type == type,
       })}
       onClick={onVoteButtonClicked}
       disabled={

@@ -18,6 +18,7 @@ type ProfileFormInputs = {
 
 const ProfileForm = ({ profileData }: Props) => {
   const profileValue = useFragment(UserProfileFragment, profileData);
+
   const [commitMutation, isMutationInFlight] =
     useMutation<ProfileSetMutation>(SetProfileMutation);
 

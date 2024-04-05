@@ -2,14 +2,16 @@ type Vote @loadModel(id: "$VOTE_ID") {
     id: ID!
 }
 interface Votable @loadModel(id: "$VOTABLE_ID") {
-    id: ID!
+    votes: [Vote] @relationFrom(model: "Vote", property: "subjectId")
+    votesCount:  Int! @relationCountFrom(model: "Vote", property: "subjectId")
 }
 
 type Comment @loadModel(id: "$COMMENT_ID") {
     id: ID!
 }
 interface Commentable @loadModel(id: "$COMMENTABLE_ID") {
-    id: ID!
+    comments: [Comment] @relationFrom(model: "Comment", property: "subjectId")
+    commentsCount:  Int! @relationCountFrom(model: "Comment", property: "subjectId")
 }
 
 type Project implements Votable & Commentable
@@ -20,6 +22,7 @@ type Project implements Votable & Commentable
     author: DID! @documentAccount
     created: DateTime!
     updated: DateTime!
+    coAuthors: [ID!] @list(maxLength: 10)
     votes: [Vote] @relationFrom(model: "Vote", property: "subjectId")
     votesCount:  Int! @relationCountFrom(model: "Vote", property: "subjectId")
     comments: [Comment] @relationFrom(model: "Comment", property: "subjectId")

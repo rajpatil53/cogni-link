@@ -1,0 +1,76 @@
+{
+  "models": {
+    "BioLink": {
+      "interface": false,
+      "implements": [],
+      "id": "kjzl6hvfrbw6c5ctgt9xvj23sr6vokrtmvuokegz5teojtr6nny5oxhcd5x3p7d",
+      "accountRelation": { "type": "list" }
+    },
+    "Profile": {
+      "interface": false,
+      "implements": [],
+      "id": "kjzl6hvfrbw6c8qj2r0l59n7zu6g1i7bdw6nswexyy3gbpybn6pllxhqfn9dud3",
+      "accountRelation": { "type": "single" }
+    }
+  },
+  "objects": {
+    "BioLink": {
+      "data": { "type": "string", "required": false, "immutable": false },
+      "handle": { "type": "string", "required": true, "immutable": false },
+      "network": { "type": "string", "required": false, "immutable": false },
+      "platform": { "type": "string", "required": true, "immutable": false },
+      "profileID": { "type": "streamid", "required": true, "immutable": false },
+      "creator": { "type": "view", "viewType": "documentAccount" },
+      "profile": {
+        "type": "view",
+        "viewType": "relation",
+        "relation": {
+          "source": "document",
+          "model": "kjzl6hvfrbw6c8qj2r0l59n7zu6g1i7bdw6nswexyy3gbpybn6pllxhqfn9dud3",
+          "property": "profileID"
+        }
+      },
+      "version": { "type": "view", "viewType": "documentVersion" }
+    },
+    "Profile": {
+      "bio": { "type": "string", "required": false, "immutable": false },
+      "name": { "type": "string", "required": true, "immutable": false },
+      "tags": {
+        "type": "list",
+        "required": false,
+        "immutable": false,
+        "item": { "type": "string", "required": false, "immutable": false }
+      },
+      "avatar": { "type": "string", "required": false, "immutable": false },
+      "wallets": {
+        "type": "list",
+        "required": false,
+        "immutable": false,
+        "item": {
+          "type": "reference",
+          "refType": "object",
+          "refName": "ProfileWallet",
+          "required": false,
+          "immutable": false
+        }
+      },
+      "version": { "type": "view", "viewType": "documentVersion" }
+    },
+    "ProfileWallet": {
+      "chain": {
+        "type": "reference",
+        "refType": "enum",
+        "refName": "ProfileChainType",
+        "required": false,
+        "immutable": false
+      },
+      "address": { "type": "string", "required": true, "immutable": false },
+      "primary": { "type": "boolean", "required": true, "immutable": false }
+    }
+  },
+  "enums": { "ProfileChainType": ["EVM", "SOLANA", "APTOS", "SUI", "ATOM"] },
+  "accountData": {
+    "bioLinkList": { "type": "connection", "name": "BioLink" },
+    "profile": { "type": "node", "name": "Profile" }
+  }
+}

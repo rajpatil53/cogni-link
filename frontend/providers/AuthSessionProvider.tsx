@@ -23,7 +23,7 @@ const AuthSessionContext = createContext<{
   isAuthenticated: false,
 });
 
-export const AuthSessionProviderProvider = ({ children }: any) => {
+export const AuthSessionProvider = ({ children }: any) => {
   const { composeClient } = useComposeClient();
   const [session, setSession] = useState<DIDSession>();
   const [did, setDid] = useState<string>("UNAUTHENTICATED");

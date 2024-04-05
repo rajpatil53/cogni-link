@@ -19,7 +19,7 @@ const ProjectListPage = (props: Props) => {
   const projectListData = useLazyLoadQuery<ProjectListQueryType>(
     ProjectListQuery,
     {
-      viewerId: did,
+      userId: did,
     }
   );
 

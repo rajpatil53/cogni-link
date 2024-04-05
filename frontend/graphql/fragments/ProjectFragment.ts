@@ -7,14 +7,11 @@ export const ProjectVotesFragment = graphql`
     downVotesCount: votesCount(
       filters: { where: { type: { equalTo: DOWN_VOTE } } }
     )
-    viewerVote: votes(first: 1, account: $viewerId) {
+    userVote: votes(first: 1, account: $userId) {
       edges {
         node {
           id
           type
-          voter {
-            isViewer
-          }
         }
       }
     }
@@ -95,6 +92,7 @@ export const ProjectDetailsFragment = graphql`
     author {
       ...UserFragment
     }
+    coAuthors
     ...ProjectFragment_votes
     commentsCount
     ...ProjectFragment_comments

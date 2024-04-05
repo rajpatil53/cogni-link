@@ -7,7 +7,7 @@ import { headers } from "next/headers";
 import WalletConnectProvider from "@/providers/WalletConnectProvider";
 import { wagmiConfig } from "@/config/wagmiConfig";
 import { ComposeClientContextProvider } from "@/providers/ComposeClientContextProvider";
-import { AuthSessionProviderProvider } from "@/providers/AuthSessionProvider";
+import { AuthSessionProvider } from "@/providers/AuthSessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,10 +31,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <WalletConnectProvider initialState={initialState}>
           <ComposeClientContextProvider>
-            <AuthSessionProviderProvider>
+            <AuthSessionProvider>
               <Navbar />
               {children}
-            </AuthSessionProviderProvider>
+            </AuthSessionProvider>
           </ComposeClientContextProvider>
         </WalletConnectProvider>
       </body>
