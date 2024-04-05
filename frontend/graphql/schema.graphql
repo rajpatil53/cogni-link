@@ -356,6 +356,29 @@ scalar DateTime
 interface Commentable implements Node {
   id: ID!
   created: DateTime!
+  comments(
+    """Returns the items in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the first n items from the list."""
+    first: Int
+
+    """Returns the items in the list that come before the specified cursor."""
+    before: String
+
+    """Returns the last n items from the list."""
+    last: Int
+
+    """Returns only documents created by the provided account"""
+    account: ID
+    filters: CommentFiltersInput
+    sorting: CommentSortingInput
+  ): CommentConnection!
+  commentsCount(
+    """Counts only documents created by the provided account"""
+    account: ID
+    filters: CommentFiltersInput
+  ): Int!
 }
 
 input CommentFiltersInput {
@@ -504,6 +527,29 @@ type Project implements Node & Votable & Commentable {
 interface Votable implements Node {
   id: ID!
   created: DateTime!
+  votes(
+    """Returns the items in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the first n items from the list."""
+    first: Int
+
+    """Returns the items in the list that come before the specified cursor."""
+    before: String
+
+    """Returns the last n items from the list."""
+    last: Int
+
+    """Returns only documents created by the provided account"""
+    account: ID
+    filters: VoteFiltersInput
+    sorting: VoteSortingInput
+  ): VoteConnection!
+  votesCount(
+    """Counts only documents created by the provided account"""
+    account: ID
+    filters: VoteFiltersInput
+  ): Int!
 }
 
 """A connection to a list of items."""
