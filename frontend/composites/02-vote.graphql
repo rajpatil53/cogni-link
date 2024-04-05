@@ -1,11 +1,13 @@
 interface Votable @createModel(description: "Required interface for models on which users can vote") {
     created: DateTime!
 }
+
 enum VoteType {
     UP_VOTE,
     DOWN_VOTE,
     NONE,
 }
+
 type Vote 
     @createModel(accountRelation: LIST, description: "Votes for other models")
     @createIndex(fields: [{ path: "subjectId" }])

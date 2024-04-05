@@ -3,7 +3,7 @@ import { ProjectFragment_card$key } from "@/graphql/fragments/__generated__/Proj
 import React from "react";
 import { useFragment } from "react-relay";
 import Author from "./Author";
-import { MessageCircle } from "lucide-react";
+import { ExternalLink, MessageCircle } from "lucide-react";
 import VoteButton from "./VoteButton";
 
 type Props = {
@@ -15,21 +15,18 @@ const ProjectCard = ({ projectFragment }: Props) => {
   return (
     <div className="card bg-base-200 shadow-lg text-base-content">
       <div className="card-body">
-        <h2 className="card-title">{project.title}</h2>
+        <a
+          href={`projects/${project.id}`}
+          className="link flex items-center gap-1"
+        >
+          <h2 className="card-title">{project.title}</h2>
+          <ExternalLink size={16} />
+        </a>
         <Author authorData={project.author} />
         <p>{project.description}</p>
         <div className="flex flex-wrap gap-2 h-auto">
           <VoteButton type={"UP_VOTE"} votesFragment={project} />
           <VoteButton type={"DOWN_VOTE"} votesFragment={project} />
-          <button className="btn btn-sqare btn-sm">
-            <MessageCircle size={18} />
-            {project.commentsCount}
-          </button>
-        </div>
-        <div className="card-actions justify-end">
-          <a href={`projects/${project.id}`} className="btn btn-primary">
-            View Project
-          </a>
         </div>
       </div>
     </div>

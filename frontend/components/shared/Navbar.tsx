@@ -11,7 +11,9 @@ const Navbar = () => {
     <div className="navbar fixed bg-base-100 z-10">
       <div className="navbar-start">
         <a className="btn btn-ghost text-xl" href="/">
-          CogniLink
+          <div>
+            <span className="text-primary">Cogni</span>Link
+          </div>
         </a>
       </div>
       <div className="navbar-end">
