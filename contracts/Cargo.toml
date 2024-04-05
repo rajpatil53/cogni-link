@@ -6,6 +6,8 @@ edition = "2021"
 [dependencies]
 stylus-sdk = "0.4.2"
 mini-alloc = "0.4.2"
+identity_did = "1.2.0"
+secp256k1 = "0.29.0"
 
 [features]
 export-abi = ["stylus-sdk/export-abi"]
