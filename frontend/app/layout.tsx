@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/shared/Navbar";
+import { cookieToInitialState } from "wagmi";
+import { headers } from "next/headers";
+import WalletConnectProvider from "@/providers/WalletConnectProvider";
+import { wagmiConfig } from "@/config/wagmiConfig";
+import { ComposeClientContextProvider } from "@/providers/ComposeClientContextProvider";
+import { AuthSessionProviderProvider } from "@/providers/AuthSessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +21,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialState = cookieToInitialState(
+    wagmiConfig,
+    headers().get("cookie")
+  );
+
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" data-theme="retro">
+      <body className={inter.className}>
+        <WalletConnectProvider initialState={initialState}>
+          <ComposeClientContextProvider>
+            <AuthSessionProviderProvider>
+              <Navbar />
+              {children}
+            </AuthSessionProviderProvider>
+          </ComposeClientContextProvider>
+        </WalletConnectProvider>
+      </body>
     </html>
   );
 }

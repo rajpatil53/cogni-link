@@ -1,0 +1,15 @@
+interface Commentable @createModel(description: "Required interface for models on which users can comment") {
+    created: DateTime!
+}
+
+type Comment
+    @createModel(accountRelation: LIST, description: "A comment on a post")
+    @createIndex(fields: [{ path: "created" }])
+    @createIndex(fields: [{ path: "subjectId" }]) {
+    owner: DID! @documentAccount
+    created: DateTime!
+    edited: DateTime
+    subjectId: StreamID! @documentReference(model: "Commentable")
+    subject: Commentable! @relationDocument(property: "subjectId")
+    body: String! @string(minLength: 1, maxLength: 100)
+}

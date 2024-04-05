@@ -1,0 +1,31 @@
+interface Votable @loadModel(id: "$VOTABLE_ID") {
+    votes: [Vote] @relationFrom(model: "Vote", property: "subjectId")
+    votesCount:  Int! @relationCountFrom(model: "Vote", property: "subjectId")
+}
+type Vote @loadModel(id: "$VOTE_ID") {
+    id: ID!
+}
+
+interface Commentable @loadModel(id: "$COMMENTABLE_ID") {
+    comments: [Comment] @relationFrom(model: "Comment", property: "subjectId")
+    commentsCount:  Int! @relationCountFrom(model: "Comment", property: "subjectId")
+}
+type Comment @loadModel(id: "$COMMENT_ID") {
+    id: ID!
+}
+
+type Project implements Votable & Commentable
+    @createModel(accountRelation: LIST, description: "A project to be published.")
+    @createIndex(fields: [{ path: "created" }]) {
+    title: String! @string(minLength: 1, maxLength: 100)
+    description: String! @string(minLength: 1, maxLength: 250)
+    author: DID! @documentAccount
+    created: DateTime!
+    updated: DateTime!
+    attachments: [CID!] @list(maxLength: 10)
+    votes: [Vote] @relationFrom(model: "Vote", property: "subjectId")
+    votesCount:  Int! @relationCountFrom(model: "Vote", property: "subjectId")
+    comments: [Comment] @relationFrom(model: "Comment", property: "subjectId")
+    commentsCount:  Int! @relationCountFrom(model: "Comment", property: "subjectId")
+}
+

@@ -1,0 +1,3 @@
+type Profile @loadModel(id: "$PROFILE_ID") {
+    owner: DID! @documentAccount
+}

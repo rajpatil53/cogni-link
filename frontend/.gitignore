@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+ceramic
+composedb
+composedb.env
+admin_seed.txt
+composedb.config.json
+__generated__/
+
+.ceramic/
+.env
