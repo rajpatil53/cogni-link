@@ -19,6 +19,8 @@ The inspiration for CogniLink came from a recognition of the barriers that tradi
 
 ---
 
+![image](https://github.com/rajpatil53/cogni-link/assets/9198670/8d1c2d8a-3342-45b0-b6d8-b8037e25b198)
+
 ## ComposeDB Data Layer 
 
 Utilized as the primary data layer for CogniLink, enabling the structured storage of research data, project information, and user interactions in a decentralized manner. This ensures data integrity and benefits from the power of composability and data interoperability.
